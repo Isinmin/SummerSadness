@@ -3,8 +3,8 @@ import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-
-
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 public class PrimAlgorithm {
     private final static int MAX_INT = 1000;
     private GraphCreation G;
@@ -52,27 +52,85 @@ public class PrimAlgorithm {
         int ret = fileopen.showDialog(null, "Открыть файл");
         if (ret == JFileChooser.APPROVE_OPTION) {
             File file = fileopen.getSelectedFile();
+
+
             try {
                 Scanner scan = new Scanner(file);
 
-                quantityVertices = scan.nextInt();
-                if (quantityVertices <= 0) ;
+                if (scan.hasNextInt()) {
+                    quantityVertices = scan.nextInt();
+                    if (quantityVertices <= 0 || quantityVertices >= 40 ) {
+                        JOptionPane.showMessageDialog(null, "Ошибка! введите  количество вершин в диапазоне от 2 до 40! ");
+                        throw new IllegalArgumentException();
+                    }
+
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Ошибка! Введены неккоректные данные!  ");
+                    throw new IllegalArgumentException();
+                }
 
                 for (int i = 0; i < quantityVertices; ++i) {
-                    int vertex_x = scan.nextInt();
-                    if (vertex_x <= 0) ;
+int vertex_x;
+                    if (scan.hasNextInt()) {
+                         vertex_x = scan.nextInt();
 
-                    int numEdges = scan.nextInt();
-                    if (numEdges < 0);
+                        if (vertex_x <= 0) {
+                            JOptionPane.showMessageDialog(null, "Ошибка! Введите неотрицательный номер вершины! ");
+                            throw new IllegalArgumentException();
+                        }
+                    }
+else {
+                        JOptionPane.showMessageDialog(null, "Ошибка! Введены некорректные данные! ");
+                        throw new IllegalArgumentException();
+
+                    }
+                    int numEdges;
+                    if(scan.hasNextInt()) {
+                        numEdges = scan.nextInt();
+                        if (numEdges < 0 || numEdges >=39) {
+                            JOptionPane.showMessageDialog(null, "Ошибка! Введите неотрицательное количество смежных ребер! ");
+                            throw new IllegalArgumentException();
+                        }
+                    }
+                    else {
+
+                        JOptionPane.showMessageDialog(null, "Ошибка! Введены некорректные данные! ");
+                        throw new IllegalArgumentException();
+
+
+                    }
 
                     for (int j = 0; j < numEdges; ++j) {
+int vertex_y;
+if(scan.hasNextInt()) {
+     vertex_y = scan.nextInt();
 
-                        int vertex_y = scan.nextInt();
-                        if (vertex_y <= 0);
+    if (vertex_y <= 0) {
+        JOptionPane.showMessageDialog(null, "Ошибка! Введите неотрицательный номер инцидетной вершины ! ");
+        throw new IllegalArgumentException();
+    }
+}
+else {
 
-                        int _weight = scan.nextInt();
-                        if (_weight <= 0);
+    JOptionPane.showMessageDialog(null, "Ошибка! Введены некорректные данные! ");
+    throw new IllegalArgumentException();
+}
+int _weight;
+if (scan.hasNextInt()) {
+    _weight = scan.nextInt();
+    if (_weight <= 0 || _weight >= 1000) {
+        JOptionPane.showMessageDialog(null, "Ошибка! Введите вес ребра в диапазоне от 0 до 1000! ");
+        throw new IllegalArgumentException();
+    }
+}
+else {
 
+    JOptionPane.showMessageDialog(null, "Ошибка! Введены некорректные данные! ");
+    throw new IllegalArgumentException();
+
+}
                         G.addEdge(vertex_x, vertex_y, _weight);
                     }
                 }
@@ -80,9 +138,9 @@ public class PrimAlgorithm {
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-
         }
     }
+
 
     public void start(int s) {
         startVertex = s;
@@ -100,9 +158,9 @@ public class PrimAlgorithm {
     public boolean executeStepAlgorithm() {
 
         if (!intree[v]) {
-            int w;
-            int weight;
-            int dist;
+            int w;                  
+            int weight;             
+            int dist;               
 
 
 
