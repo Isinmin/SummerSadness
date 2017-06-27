@@ -32,17 +32,18 @@ public class WorkingWindow extends JFrame {
         ActionListener finishActionListener = new FinishButtonActionListener();
         ActionListener exitActionListener = new ExitButtonActionListener();
         ActionListener resultActionListener = new ResultButtonActionListener();
+        ActionListener nextActionListener = new NextButtonActionListener();
 
         loadButton.addActionListener(loadActionListener);
         startButton.addActionListener(startActionListener);
-
+        nextButton.addActionListener(nextActionListener);
         finishButton.addActionListener(finishActionListener);
         exitButton.addActionListener(exitActionListener);
         resultButton.addActionListener(resultActionListener);
 
         startButton.setEnabled(false);
         nextButton.setEnabled(false);
-        finishButton.setEnabled(false);
+      resultButton.setEnabled(false);
 
         setSize(windowSizeW, windowSizeH);
         setResizable(false);
@@ -240,6 +241,7 @@ public class WorkingWindow extends JFrame {
             prim.start(startParamNum);
             paintGraph();
             nextButton.setEnabled(true);
+            resultButton.setEnabled(true);
             startButton.setEnabled(false);
         }
     }
@@ -253,7 +255,8 @@ public class WorkingWindow extends JFrame {
             loadButton.setEnabled(true);
             startButton.setEnabled(false);
             nextButton.setEnabled(false);
-            finishButton.setEnabled(false);
+            resultButton.setEnabled(false);
+            finishButton.setEnabled(true);
             clear();
             outputText.setText("");
         }
@@ -268,7 +271,10 @@ public class WorkingWindow extends JFrame {
 
     public class ResultButtonActionListener implements ActionListener {
 
+
+
         public void actionPerformed(ActionEvent e) {
+
             for (int i = 0; i < prim.getMAXV(); i++) {
                 boolean check = prim.executeStepAlgorithm();
 
@@ -281,5 +287,14 @@ public class WorkingWindow extends JFrame {
         }
     }
 
+    public class NextButtonActionListener implements ActionListener {
 
+        public void actionPerformed(ActionEvent e) {
+            boolean check = prim.executeStepAlgorithm();
+            paintGraph();
+            paintStepGraph();
+           // if (check) nextButton.setEnabled(false);
+            //outputText.setText(prim.getTextInfo());
+        }
+    }
 }
