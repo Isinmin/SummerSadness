@@ -16,6 +16,7 @@ public class WorkingWindow extends JFrame {
     private PrimAlgorithm prim;
     private int startParamNum;
 
+
     private int windowSizeH = 600;
     private int windowSizeW = 1100;
 
@@ -67,7 +68,7 @@ public class WorkingWindow extends JFrame {
 
         Font SegoiUI = new Font("American Typewriter", Font.PLAIN, 17);
         gfx.setFont(SegoiUI);
-        gfx.setStroke(new BasicStroke(2.0f));  // толщина равна 2
+        gfx.setStroke(new BasicStroke(2.0f));
         for (int j = 1; j < prim.getLength(); ++j) {
             GraphCreation.Edge e = prim.getEdge(j);
             while (e != null) {
@@ -94,7 +95,7 @@ public class WorkingWindow extends JFrame {
             gfx.setColor(Color.cyan);
             double x = r * Math.cos(angle * (j) - pi / 2) + u;
             double y = r * Math.sin(angle * (j) - pi / 2) + v;
-            gfx.fillOval((int) x, (int) y, rPoint, rPoint); // рисуем круг
+            gfx.fillOval((int) x, (int) y, rPoint, rPoint);
 
             gfx.setColor(Color.black);
             gfx.drawString(String.valueOf(j), (int) x + rPoint / 3, (int) y + rPoint / 3 * 2);
@@ -104,7 +105,7 @@ public class WorkingWindow extends JFrame {
 
     public void paintStepGraph() {
         Graphics2D gfx = (Graphics2D) rootPanel.getGraphics();
-        gfx.setStroke(new BasicStroke(4.0f));  // толщина равна 4
+        gfx.setStroke(new BasicStroke(4.0f));
         Font SegoiUI = new Font("Segoi UI Light", Font.BOLD, 15);
         gfx.setFont(SegoiUI);
         double pi = 3.14;
@@ -129,7 +130,7 @@ public class WorkingWindow extends JFrame {
 
                 double x = r * Math.cos(angle * parent[j] - pi / 2) + u;
                 double y = r * Math.sin(angle * parent[j] - pi / 2) + v;
-                gfx.fillOval((int) x, (int) y, rPoint, rPoint); // рисуем круг
+                gfx.fillOval((int) x, (int) y, rPoint, rPoint);
 
                 gfx.setColor(Color.yellow);
                gfx.drawString(String.valueOf(parent[j]), (int) x + rPoint / 3, (int) y + rPoint / 3 * 2);
@@ -137,7 +138,7 @@ public class WorkingWindow extends JFrame {
                gfx.setColor(Color.red);
                 x = r * Math.cos(angle * j - pi / 2) + u;
                 y = r * Math.sin(angle * j - pi / 2) + v;
-                gfx.fillOval((int) x, (int) y, rPoint, rPoint); // рисуем круг
+                gfx.fillOval((int) x, (int) y, rPoint, rPoint);
 
                 gfx.setColor(Color.yellow);
                 gfx.drawString(String.valueOf(j), (int) x + rPoint / 3, (int) y + rPoint / 3 * 2);
@@ -237,6 +238,7 @@ public class WorkingWindow extends JFrame {
     public class StartButtonActionListener implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
+
             startParamNum = Integer.parseInt(startParam.getText());
             prim.start(startParamNum);
             paintGraph();
@@ -293,8 +295,8 @@ public class WorkingWindow extends JFrame {
             boolean check = prim.executeStepAlgorithm();
             paintGraph();
             paintStepGraph();
-           // if (check) nextButton.setEnabled(false);
-            //outputText.setText(prim.getTextInfo());
+           if (check) nextButton.setEnabled(false);
+            outputText.setText(prim.getTextInfo());
         }
     }
 }

@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+
 public class PrimAlgorithm {
     private final static int MAX_INT = 1000;
     private GraphCreation G;
@@ -17,7 +18,7 @@ public class PrimAlgorithm {
     private GraphCreation.Edge p;
     private int v;
 
-
+    private String textInfo;
 
 
     public PrimAlgorithm() {
@@ -27,7 +28,7 @@ public class PrimAlgorithm {
         intree = new boolean[G.edges.length];
         distance = new int[G.edges.length];
         parent = new int[G.edges.length];
-
+        textInfo = "";
 
     }
     public int getMAXV(){return G.MAX_V;}
@@ -43,7 +44,9 @@ public class PrimAlgorithm {
         return G.edges.length;
     }
 
-
+    public String getTextInfo() {
+        return textInfo;
+    }
 
 
     public void readData() {
@@ -156,12 +159,12 @@ else {
 
 
     public boolean executeStepAlgorithm() {
-
+        textInfo = "";
         if (!intree[v]) {
-            int w;                  
-            int weight;             
-            int dist;               
-
+            int w;
+            int weight;
+            int dist;
+            textInfo += "Вершина " + v + " добавлена в МОД\n";
 
 
             intree[v] = true;
@@ -169,13 +172,18 @@ else {
             while (p != null) {
                 w = p.getY();
                 if (w != 0) {
-
+                    textInfo += "Рассмотрим вершину " + w + "\n";
                     weight = p.getWeight();
                     if (distance[w] > weight && !intree[w]) {
                         distance[w] = weight;
                         parent[w] = v;
-
+                        textInfo += "Вес ребра ( "+v+","+w+" ) меньше чем тот, который уже записан и вершина "+w+" еще не добавлена в дерево. Запоминаем новый вес.\n";
                     }
+                else {
+                    if (distance[w] > weight)
+                        textInfo += "Вес ребра ( "+v+","+w+" ) больше или равен тому, который уже записан.\n";
+                    else textInfo += "Вершина "+w+" уже содержится в МОД.\n";
+                }
                 }
                 p = p.getNext();
             }
@@ -188,10 +196,10 @@ else {
                 }
             }
 
-
+            textInfo += "Рассмотрим вершину " +v;
             return false;
         } else {
-
+            textInfo += "Все вершины добавлены в МОД\nАлгоритм закончил работу\n";
             return true;
         }
     }
@@ -207,7 +215,7 @@ else {
         }
         p = null;
         v = 0;
-
+        textInfo = "";
 
     }
 }
