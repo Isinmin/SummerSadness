@@ -1,4 +1,5 @@
 
+
 import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -6,21 +7,34 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
+/**
+ * Класс  реализует алгоритм Прима.
+ * Он поддерживает следующие операции: считывание графа,
+ * readData, подготовку к выполнению алгоритма, start
+ * и выполнение шага алгоритма, executeStepAlgorithm.
+ */
 public class PrimAlgorithm {
     private final static int MAX_INT = 1000;
-    private GraphCreation G;
-    private int startVertex;
-    private int quantityVertices;
+    private GraphCreation G; //исходный граф
+    private int startVertex; //начальная вершина
+    private int quantityVertices; //количество вершин
     private int[] parent;
-    private boolean[] intree;
-    private int[] distance;
+    private boolean[] intree; //в дереве ли вершина???
+    private int[] distance; //вес
 
-    private GraphCreation.Edge p;
-    private int v;
+    private GraphCreation.Edge p; // временный "указатель" 
+    private int v; // текущая вершина для обработки
 
     private String textInfo;
 
 
+     /**
+     * Подготовка к выполнению алгоритма, которая
+     * заключается в инициализации необходимых полей
+     * начальными значениями.
+     *
+     * @param s начальная вершина
+     */
     public PrimAlgorithm() {
         G = new GraphCreation();
         startVertex = 0;
@@ -31,11 +45,17 @@ public class PrimAlgorithm {
         textInfo = "";
 
     }
+    
     public int getMAXV(){return G.MAX_V;}
     public int[] getParent() {
         return parent;
     }
-
+     /**
+     * Выполняет шаг алгоритма
+     *
+     * @return false, если еще не все вершины добавлены в граф;
+     * в противном случае - true
+     */
     public GraphCreation.Edge getEdge(int j) {return G.edges[j];}
 
     public int getQuantityVertices() {return quantityVertices;}
@@ -49,6 +69,9 @@ public class PrimAlgorithm {
     }
 
 
+    /**
+     * Считывание данных из файла
+     */
     public void readData() {
 
         JFileChooser fileopen = new JFileChooser();
@@ -157,13 +180,13 @@ else {
         v = startVertex;
     }
 
-
+//все ли вершины добавлены в остовное дерево???
     public boolean executeStepAlgorithm() {
         textInfo = "";
         if (!intree[v]) {
-            int w;
-            int weight;
-            int dist;
+            int w; //кондидат на следующую веришину
+            int weight; //вес ребра
+            int dist; //наилучшее текущее расстояние
             textInfo += "Вершина " + v + " добавлена в МОД\n";
 
 
@@ -203,7 +226,7 @@ else {
             return true;
         }
     }
-
+//очистка текущего графа
     public void clear(){
         G.clear();
         startVertex = 0;
