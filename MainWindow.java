@@ -6,11 +6,15 @@ import java.awt.event.ActionListener;
 
 public class MainWindow extends JFrame {
     private JPanel rootPanel;
-    private JButton startButton;
-    private JButton aboutButton;
-    private JButton exitButton;
-    private JButton niceButton;
+    private JButton startButton;//Начать программу
+    private JButton aboutButton;//О программе
+    private JButton exitButton;//Вывод
+    private JButton niceButton;//Инструкция
 
+/**
+* Конструктор начального окна
+*
+*/
     public MainWindow() {
 
         setContentPane(rootPanel);
@@ -101,28 +105,46 @@ public class MainWindow extends JFrame {
     }
 
     public class StartButtonActionListener implements ActionListener {
+         /**
+         * Обработчик действия кнопки startButton
+         *
+         * @param e - startActionListener
+         */
 
         public void actionPerformed(ActionEvent e) {
+       
             WorkingWindow alg_window = new WorkingWindow();
         }
     }
 
     public class AboutButtonActionListener implements ActionListener {
-
+        /**
+         * Обработчик действия кнопки exitButton
+         *
+         * @param e - aboutActionListener
+         */
         public void actionPerformed(ActionEvent e) {
             Instructions about_window = new Instructions();
         }
     }
 
     public class ExitButtonActionListener implements ActionListener {
-
+        /**
+         * Обработчик действия кнопки aboutButton
+         *
+         * @param e - exitActionListener
+         */
         public void actionPerformed(ActionEvent e) {
             System.exit(1);
         }
     }
 
     public class NiceButtonActionListener implements ActionListener {
-
+        /**
+         * Обработчик действия кнопки aboutButton
+         *
+         * @param e - instructionActionListener
+         */
         public void actionPerformed(ActionEvent e) {
             AboutProgram nice_window = new AboutProgram();
         }
