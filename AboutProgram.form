@@ -34,7 +34,7 @@
         </constraints>
         <properties>
           <font name="American Typewriter" style="1"/>
-          <foreground color="-5439479"/>
+          <foreground color="-16777216"/>
           <text value="Реализация алгоритма Прима."/>
         </properties>
       </component>
@@ -71,7 +71,7 @@
         </constraints>
         <properties>
           <font name="American Typewriter" style="1"/>
-          <foreground color="-16738225"/>
+          <foreground color="-16777216"/>
           <text value="Базовые знания теории графов"/>
         </properties>
       </component>
@@ -81,7 +81,7 @@
         </constraints>
         <properties>
           <font name="American Typewriter" style="1"/>
-          <foreground color="-5219348"/>
+          <foreground color="-16777216"/>
           <text value="ФКТИ"/>
         </properties>
       </component>
@@ -105,9 +105,9 @@
           <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <enabled value="false"/>
+          <enabled value="true"/>
           <font name="American Typewriter" style="1"/>
-          <foreground color="-10812328"/>
+          <foreground color="-16777216"/>
           <text value="Пошаговая визуализация"/>
         </properties>
       </component>
@@ -117,7 +117,7 @@
         </constraints>
         <properties>
           <font name="American Typewriter" style="1"/>
-          <foreground color="-15457630"/>
+          <foreground color="-16777216"/>
           <text value="Подробные текстовые комментарии"/>
         </properties>
       </component>
